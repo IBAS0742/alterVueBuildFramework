@@ -33,14 +33,16 @@ var entryFiles = glob.sync(PAGE_PATH + '/**/*.js')
 | 配置项 | 说明 |
 | -------- | -------- |
 | singlePage | 是否适用单页打包 |
-| childMutilPage | 单页打包时，是否分文件夹打包 |
+| childMutilPage | 多页打包时，是否分文件夹打包 |
 | path | 单页打包时，每一个子页是否要指定特定的打包位置 |
 | staticSetting | 静态资源打包时的配置 |
 | proSetting | 生产环境配置 |
 | devSetting | 开发环境配置 |
 
->> 1.singlePage、childMutilPage、path、staticSetting其实是有开发模式和生产模式的，但是时间有限没有完成，所以，当前他们的配置据哟与全局性。
+>> 1.singlePage、childMutilPage、path、staticSetting其实是有开发模式和生产模式的区分的，但是时间有限没有完成，所以，当前他们的配置据具有全局性。
+
 >> 2.singlePage 配置为 false 时，表示多页打包，为 true 时表示单页打包
+
 >>> true（单页打包说明）
 
 >>> proSetting.single 和 devSetting.single 是配置单页打包的，他们区别一个 filename ，因为开发模式不需要打包成文件，另外这里让他们可以分开指定一个 template 和 一个 app 文件，是因为，页面时使用【utils/createViews/createViews.js】生成的，所以会自动将 router 文件进行修改，如果本质上开发的是单页，需要另外制定一个 template 和 app，注意这里的 index.html 和 main.js 没有限定，只有 routes.js 是限定的
