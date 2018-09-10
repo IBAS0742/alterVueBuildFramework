@@ -1,0 +1,31 @@
+0. 工程是多页单页并存并在打包时指定，这里不进行赘述，请看工程说明
+0. 如果将 src/pages 中的页面删除，可以运行 themeUtil/runSyncTools.js 来同步修改
+
+1. 创建视图时动作有点复杂，要考虑到主题的问题，这里没时间编写，暂时做空，可以考虑参考工程 buildTemplate
+2. 创建视图时发生的动作说明
+
+    1. 建立组件
+    //配置以下属性，
+    // 页面的名称同时作为单页使用时的 组件 名称
+    const name = 'projectList';
+    // 页面的文件夹名称（配置多页时考虑到）
+    const dir = '/pageEditor/'
+    // 当前工程仅仅支持 elm ui
+    const ui = 'elm';
+    // 页面的标题
+    const title = '标题';
+    // 根据以上 四个属性，将在 src/pages 中建立一下内容
+    src/pages/{{dir}}/{{name}}.html
+    src/pages/{{dir}}/{{name}}.js
+    src/pages/{{dir}}/{{name}}.vue
+
+    2. 配置页面到一个单页中（路由）
+    更新 src/route.js 文件
+    //更新方法写在 themeUtil/syncTools.js 中
+
+3.themeUtil
+    0. 【syncTools】 获取 【formInfo】 生成的信息，调用 【makeRouters】 生成 routes.js 文件
+    1. formInfo.js
+        生成 makeApp.vue.js 和 makeComponentsJs.js 需要的信息
+    2. makeRouters.js
+    3. syncTools.js
