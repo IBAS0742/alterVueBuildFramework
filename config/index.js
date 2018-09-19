@@ -44,9 +44,9 @@ module.exports = {
   },
 
   build: Object.assign({
-    assetsRoot: path.resolve(__dirname, pagePathSetting.staticPath),
-    assetsSubDirectory: pagePathSetting.staticPathName,
-    assetsPublicPath: pagePathSetting.staticUsingName,
+    assetsRoot: path.resolve(__dirname, pagePathSetting.staticSetting.staticPath),
+    assetsSubDirectory: pagePathSetting.staticSetting.staticPathName,
+    assetsPublicPath: pagePathSetting.staticSetting.staticUsingName,
 
     /**
      * Source Maps
@@ -71,7 +71,7 @@ module.exports = {
   },(
     pagePathSetting.singlePage ? {
       // env: require('./prod.env'),
-      index: path.resolve(__dirname, pagePathSetting.singlePageSettingPro.filename),
+      index: path.resolve(__dirname, pagePathSetting.single.filename),
     } : {}
   ))
 }

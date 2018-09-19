@@ -1,9 +1,13 @@
 'use strict'
+const env = require('../config/dev.env');
+process.env.NODE_ENV = env.NODE_ENV.replace(/"/g,'').replace(/'/g,'');
+
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
 const path = require('path')
+
 const baseWebpackConfig = require('./webpack.base.conf')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -48,7 +52,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   /* todo modify */
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/dev.env')
+      'process.env': env
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
@@ -71,7 +75,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }
     ])
   // todo 新增代码开始(.concat(utils.htmlPlugin()))
-  ].concat(utils.htmlPluginDev())
+  ].concat(utils.htmlPlugin())
   // todo 新增代码结束
 })
 

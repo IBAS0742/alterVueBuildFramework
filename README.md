@@ -39,7 +39,7 @@ var entryFiles = glob.sync(PAGE_PATH + '/**/*.js')
 | proSetting | 生产环境配置 |
 | devSetting | 开发环境配置 |
 
->> 1.singlePage、childMutilPage、path、staticSetting其实是有开发模式和生产模式的区分的，但是时间有限没有完成，所以，当前他们的配置据具有全局性。
+>> 1.singlePage、childMutilPage、path、staticSetting其实是有开发模式和生产模式的区分的。
 
 >> 2.singlePage 配置为 false 时，表示多页打包，为 true 时表示单页打包
 

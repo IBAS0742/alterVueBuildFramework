@@ -119,7 +119,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ])
-  ].concat(utils.htmlPluginPro())
+  ].concat(utils.htmlPlugin())
   /* todo 添加代码结束 */
 })
 

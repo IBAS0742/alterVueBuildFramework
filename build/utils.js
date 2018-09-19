@@ -54,21 +54,17 @@ let mutilHtmlPlugin = function () {
   })
   return arr
 };
-// 单页面打包时使用到该内容
-let singleHtmlPluginDev = function() {
-  return new HtmlWebpackPlugin(
-    Object.assign(JSON.parse(JSON.stringify(pagePathSetting.singlePageSettingPro)),{
+
+let singleHtmlPlugin = function() {
+  let pl = new HtmlWebpackPlugin(
+    Object.assign({},pagePathSetting.single,{
       filename: config.build.index,
     }));
+  console.log(JSON.stringify(pl,null,'\t'));
+  return pl;
 };
-let singleHtmlPluginPro = function() {
-  return new HtmlWebpackPlugin(
-    Object.assign(JSON.parse(JSON.stringify(pagePathSetting.singleHtmlPluginDev)),{
-      filename: config.build.index,
-    }));
-};
-exports.htmlPluginPro = (pagePathSetting.singlePage ? singleHtmlPluginPro : mutilHtmlPlugin);
-exports.htmlPluginDev = (pagePathSetting.singlePage ? singleHtmlPluginDev : mutilHtmlPlugin);
+
+exports.htmlPlugin = pagePathSetting.singlePage ?  singleHtmlPlugin : mutilHtmlPlugin;
 /* todo add */
 
 exports.assetsPath = function (_path) {

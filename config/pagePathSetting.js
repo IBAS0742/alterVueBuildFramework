@@ -10,36 +10,74 @@ let singlePageSettingDefault = {
   // necessary to consistently work with multiple chunks via CommonsChunkPlugin
   chunksSortMode: 'dependency'
 };
+
 /**
  * 以下开始为配置项
  * */
-let singlePage = false;
-let childMutilPage = true;
-let path = {
-  // 相对于资源的位置
-  default: './',
-  'test1/testOne.html': './test1-testOne/',
-  'test1/testTwo.html': './test1-testTwo/',
-  'test2/testThree.html': './test2-testThree/'
-};
-let staticSetting = {
-  // 指定 statics 文件夹的位置，一般 static 和 页面 会是同一个等级的文件夹下，这里指的就是这个文件夹
-  // 如果是相对位置，则是相对于 config 文件夹的位置 ./../dist
-  // 如果是全路径，则按照全路径进行 D:/static/
-  staticPath: './../dist',
-  // 指定资源文件夹的名称，一般叫 statics 就可以了
-  staticPathName: 'statics',
-  // 指定 static 文件被引用时的路径，如果 static 和 页面 放在一起，则使用 ./ 如果页面放在其他层次位置则进行相应调整
-  staticUsingName: './../../',
-}
 let proSetting = {
-  path,
-  staticSetting,
-  singlePage: singlePage,
-  childMutilPage: childMutilPage,
+  path: {
+    // 相对于资源的位置
+    default: './',
+    'test1/testOne.html': './test1-testOne/',
+    'test1/testTwo.html': './test1-testTwo/',
+    'test2/testThree.html': './test2-testThree/'
+  },
+  staticSetting: {
+    // 指定 statics 文件夹的位置，一般 static 和 页面 会是同一个等级的文件夹下，这里指的就是这个文件夹
+    // 如果是相对位置，则是相对于 config 文件夹的位置 ./../dist
+    // 如果是全路径，则按照全路径进行 D:/static/
+    staticPath: './../dist',
+    // 指定资源文件夹的名称，一般叫 statics 就可以了
+    staticPathName: 'statics',
+    // 指定 static 文件被引用时的路径，如果 static 和 页面 放在一起，则使用 ./ 如果页面放在其他层次位置则进行相应调整
+    staticUsingName: './../../',
+  },
+  singlePage: false,
+  childMutilPage: true,
+  single: null,
+  // 相对于根路径的 main.js 的路径
+  // ./src/main.js
+  app: null
+};
+/**
+ * 配置项到此为止
+ * */
+let devSetting = {
+  path: null,
+  staticSetting: {
+    // 指定 statics 文件夹的位置，一般 static 和 页面 会是同一个等级的文件夹下，这里指的就是这个文件夹
+    // 如果是相对位置，则是相对于 config 文件夹的位置 ./../dist
+    // 如果是全路径，则按照全路径进行 D:/static/
+    staticPath: './../dist',
+    // 指定资源文件夹的名称，一般叫 statics 就可以了
+    staticPathName: 'statics',
+    // 指定 static 文件被引用时的路径，如果 static 和 页面 放在一起，则使用 ./ 如果页面放在其他层次位置则进行相应调整
+    staticUsingName: './../../'
+  },
+  singlePage: true,
+  childMutilPage: null,
+  single: Object.assign({
+    // 相对于根路径的地址
+    // index.html 表示和 package.json 同个路径下的 index.html 文件
+    template: './src/index.html',
+    filename: './../dist/index.html',
+  },singlePageSettingDefault),
+  // 相对于根路径的 main.js 的路径
+  // ./src/main.js
+  app: './src/main.js'
+};
+
+module.exports = Object.assign({
+  // staticPath: staticSetting.staticPath,
+  // staticPathName: staticSetting.staticPathName,
+  // staticUsingName: staticSetting.staticUsingName,
+  // path,
+  // singlePage: singlePage,
+  // 相对于根路径的 main.js 的路径
+  // ./src/main.js
+  // singlePageAppDev: devSetting.single.app,
+  // singlePageAppPro: proSetting.single.app,
   single: {
-    // 相对于 config 文件夹， html 文件的地址(输出 html 文件的全路径)
-    // ./../dist/index.html
     filename: './../dist/index.html',
     // 相对于根路径的地址
     // index.html 表示和 package.json 同个路径下的 index.html 文件
@@ -47,46 +85,9 @@ let proSetting = {
     // 相对于根路径的 main.js 的路径
     // ./src/main.js
     app: './src/main.js'
-  }
-};
-/**
- * 配置项到此为止
- * */
-
-let devSetting = {
-  path,
-  staticSetting,
-  singlePage: singlePage,
-  childMutilPage: childMutilPage,
-  single: {
-    // 相对于根路径的地址
-    // index.html 表示和 package.json 同个路径下的 index.html 文件
-    template: './src/index.html',
-    // 相对于根路径的 main.js 的路径
-    // ./src/main.js
-    app: './src/main.js'
-  }
-};
-
-module.exports = {
-  staticPath: staticSetting.staticPath,
-  staticPathName: staticSetting.staticPathName,
-  staticUsingName: staticSetting.staticUsingName,
-  path,
-  singlePage: singlePage,
-  // 相对于根路径的 main.js 的路径
-  // ./src/main.js
-  singlePageAppDev: devSetting.single.app,
-  singlePageAppPro: proSetting.single.app,
-  singlePageSettingPro: Object.assign({},singlePageSettingDefault,{
-    filename: proSetting.single.filename,
-    template: proSetting.single.template
-  }),
-  singleHtmlPluginDev: Object.assign({},singlePageSettingDefault,{
-    template: devSetting.single.template
-  }),
+  },
   // 是否 page 文件夹下的文件配置多页输出
-  childMutilPage: childMutilPage,
+  // childMutilPage: childMutilPage,
   // 当配置了文件夹下文件为多页输出后使用该方法导出多页 HTML
   childMutilHTMLOutput(filePath,PAGE_PATH) {
     let filenames = filePath.substring(PAGE_PATH.length).split('/');
@@ -139,8 +140,8 @@ module.exports = {
     });
     return map;
   },
-};
-
+},(process.env.NODE_ENV === 'development' ? devSetting : proSetting));
+// console.log(JSON.stringify((process.env.NODE_ENV === 'development' ? devSetting : proSetting),null,'\t'))
 /**
  * 可能不是很好的文档位置，我会另外在合适的地方进行拷贝，这里先简单说明一下
  * 配置【文件夹下多页】的意思

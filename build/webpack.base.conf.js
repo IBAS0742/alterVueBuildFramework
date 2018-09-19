@@ -92,9 +92,7 @@ module.exports = Object.assign({
 },(
   pageSetting.singlePage ? {
     entry: {
-      app: process.env.NODE_ENV === 'production'
-          ? pageSetting.singlePageAppPro
-          : pageSetting.singlePageAppDev
+      app: pageSetting.app
     }
   } : {
     entry: utils.entries(),
